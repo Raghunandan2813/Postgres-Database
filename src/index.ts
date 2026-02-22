@@ -1,16 +1,14 @@
-
+import dotenv  from "dotenv";
 import express from "express";
 import {Client} from "pg";
- 
+dotenv.config(); 
 const app = express();
 app.use(express.json());
 const pgClient = new Client({
-    user: "neondb_owner",
-    password : "npg_ueiK1CFYLZR3",
-    port : 5432,
-    host: "ep-misty-bread-aiz4ll77-pooler.c-4.us-east-1.aws.neon.tech",
-    database: "neondb",
-    ssl : true
+    connectionString : process.env.POSTGRES_URI ,
+    ssl :{
+           rejectUnauthorized: false
+    }
 })
 
 
